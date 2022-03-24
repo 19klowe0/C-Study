@@ -79,6 +79,35 @@ int threeSumClosest(vector<int>& nums, int target) {
     return sum;
 }
 
+//prompt- You are given an n x n 2D matrix representing an image, rotate the image by 90 degrees (clockwise).
+//123    741
+//456 -> 852
+//789    963
+void rotate(vector<vector<int>>& matrix) {
+    //get the cols in te rows 
+    //123->147
+    for (int i = 0; i < matrix.size(); i++)
+    {
+        for (int j = 0; j < matrix[i].size(); j++)
+        {
+            if (i < j)
+                swap(matrix[i][j], matrix[j][i]);
+        }
+    }
+    //reverse the new row entry 
+    //147->741
+    int a = matrix.size();
+    for (int i = 0; i < matrix.size(); i++)
+    {
+        for (int j = 0; j < matrix[i].size() / 2; j++)
+        {
+            swap(matrix[i][j], matrix[i][a - 1 - j]);
+        }
+    }
+}
+
+
+
 int main()
 {
    /* int a = 3;
@@ -104,7 +133,25 @@ int main()
     int sum = threeSumClosest(nums, target);
     
 
+    vector<vector<int>> matrix{{1, 2, 3},{4, 5, 6},{7, 8, 9}};
 
+    for (int i = 0; i < matrix.size(); i++)
+    {
+        for (int j = 0; j < matrix[i].size(); j++)
+        {
+            cout << matrix[i][j];
+        }
+    }
+    cout << endl;
+    rotate(matrix);
+    for (int i = 0; i < matrix.size(); i++)
+    {
+        for (int j = 0; j < matrix[i].size(); j++)
+        {
+            cout << matrix[i][j];
+        }
+    }
+    cout << endl;
 
     cout << "the closest sum to the target it " << sum << endl;
 
